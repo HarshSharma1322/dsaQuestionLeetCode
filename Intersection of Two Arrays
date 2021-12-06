@@ -1,0 +1,44 @@
+
+//Soln 1: using two setttt
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        set<int>s1,s2;
+        for(int i=0; i<nums1.size(); i++){
+            s1.insert(nums1[i]);
+        }
+        for(int i=0; i<nums2.size(); i++){
+            s2.insert(nums2[i]);
+        }        
+        vector<int>ans;
+        for(int i=0; i<nums1.size(); i++){
+            if(s2.find(nums1[i])!=s2.end()){
+                ans.push_back(nums1[i]);
+                s2.erase(nums1[i]);
+            }
+        }
+        return ans;
+    }
+};
+
+Soln 2: Using only 1 set 
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        set<int>s1;
+        for(int i=0; i<nums1.size(); i++){
+            s1.insert(nums1[i]);
+        }
+       
+        vector<int>ans;
+        for(int i=0; i<nums2.size(); i++){
+            if(s1.find(nums2[i])!=s1.end()){
+                ans.push_back(nums2[i]);
+                s1.erase(nums2[i]);
+            }
+        }
+        return ans;
+    }
+};
