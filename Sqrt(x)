@@ -1,3 +1,5 @@
+Soln 1: Time taken O(sqrt(n))
+
 class Solution {
 public:
     int mySqrt(int x) {
@@ -6,5 +8,35 @@ public:
             y++;
         }
         return (y-1);
+    }
+};
+
+Soln 2: Time taken O(log(n))
+
+class Solution {
+public:
+    long long int binarySearch(int target){
+        
+        int start=0,end=target;
+        long long int ans=-1;
+        long long int mid= start + (end- start)/2;
+        
+        while(start<=end){
+            if(mid*mid>target){
+                end=mid-1;
+            }
+            else if(mid*mid<target){
+                ans=mid;
+                start=mid+1;
+            }
+            else if(mid*mid==target){
+                return mid;
+            }
+            mid= start + (end- start)/2;
+        }
+        return ans;
+    }
+    int mySqrt(int x) {
+        return binarySearch(x);
     }
 };
