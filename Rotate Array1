@@ -1,0 +1,21 @@
+class Solution {
+public:
+    void reverse(vector<int>& nums,int low,int high){
+        while(low<high){
+            swap(nums[low++],nums[high--]);
+        }
+    }
+    void rotate(vector<int>& nums, int k) {
+        if(nums.size()==0 || nums.size()==1){
+            return;
+        }
+        if(nums.size()<k){
+            k=k%(nums.size());
+        }
+        int actualVal=nums.size()-k;
+        reverse(nums, 0,actualVal-1);
+        reverse(nums, actualVal, nums.size()-1);
+        reverse(nums, 0,nums.size()-1);
+        
+    }
+};
