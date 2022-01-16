@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+int ways(int stairs){
+    if(stairs==0) return 1;
+    if(stairs<0) return 0;
+    
+    return ways(stairs-1)+ways(stairs-2);
+}
+
+int main()
+{
+    cout<<ways(4);
+
+    return 0;
+}
