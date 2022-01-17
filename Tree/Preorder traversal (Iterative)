@@ -1,0 +1,18 @@
+class Solution{
+    public:
+    vector<int> preOrder(Node* root)
+    {
+        vector<int>ans;
+        if(root==NULL) return ans;
+        stack<Node *>s1;
+        s1.push(root);
+        
+        while(!s1.empty()){
+            root=s1.top();
+            s1.pop();
+            if(root->right!= NULL) s1.push(root->right);
+            if(root->left !=NULL) s1.push(root->left);
+            ans.push_back(root->data);
+        }
+    }
+};
