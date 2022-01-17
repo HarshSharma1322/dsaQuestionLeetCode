@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> inOrder(Node* root)
+    {
+        vector<int>ans;
+        if(root==NULL) return ans;
+        stack<Node *>st;
+        
+        while(true){
+            if(root !=NULL){
+                st.push(root);
+                root=root->left;
+            }
+            else{
+                if(st.empty()){
+                    break;
+                }
+                root=st.top();
+                ans.push_back(root->data);
+                root=root->right;
+                st.pop();
+            }
+        }
+        return ans;
+    }
+};
