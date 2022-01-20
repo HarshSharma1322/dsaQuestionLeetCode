@@ -1,0 +1,18 @@
+class Solution{
+    public:
+    // return true/false denoting whether the tree is Symmetric or not
+    bool traversal(Node *left,Node* right){
+        if(left==NULL || right==NULL){
+            return left==right;
+        }
+        if(left->data!=right->data){
+            return false;
+        }
+        return(traversal(left->right,right->left) && traversal(left->left,right->right));
+    }
+    bool isSymmetric(struct Node* root)
+    {
+	    if(!root) return true;
+	    return traversal(root->left,root->right);
+    }
+};
