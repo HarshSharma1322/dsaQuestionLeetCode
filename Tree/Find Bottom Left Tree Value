@@ -1,0 +1,18 @@
+class Solution {
+public:
+    void traversal(TreeNode *root,int level,vector<int>&sum){
+        if(root==NULL) return;
+        if(level==sum.size()){
+            sum.push_back(root->val);
+        }
+        traversal(root->left,level+1,sum);
+        traversal(root->right,level+1,sum);
+    }
+    int findBottomLeftValue(TreeNode* root) {
+        int level=0;
+        vector<int>sum;
+        traversal(root,level,sum);
+        int res=sum[sum.size()-1];
+        return res;
+    }
+};
