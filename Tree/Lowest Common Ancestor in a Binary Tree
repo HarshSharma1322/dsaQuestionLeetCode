@@ -1,0 +1,52 @@
+
+// Recursive Way to solve
+
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root==NULL || root==p || root==q) return root;
+        TreeNode *left=lowestCommonAncestor(root->left,p,q);
+        TreeNode *right=lowestCommonAncestor(root->right,p,q);
+        
+        if(left and right) return root;
+        else if(left) return left;
+        else return right;
+    }
+};
+
+
+
+// Iterative Way to solve this
+
+class Solution
+{
+    public:
+    bool solve(Node* root,int key,vector<Node*>&v){
+        if(root==NULL)return 0;
+        v.push_back(root);
+        if(root->data==key){
+            return 1;
+        }
+        if(solve(root->left,key,v))return 1;
+        if(solve(root->right,key,v))return 1;
+        v.pop_back();
+        return 0;
+    }
+    //Function to return the lowest common ancestor in a Binary Tree.
+    Node* lca(Node* root ,int n1 ,int n2 )
+    {
+       vector<Node*>v1,v2;
+       solve(root,n1,v1);
+       solve(root,n2,v2);
+       if(v1.size()==0||v2.size()==0){
+           return {};
+       }
+       int i;
+       for(i=0;i<v1.size()&&i<v2.size();i++){
+           if(v1[i]!=v2[i])break;
+           
+       }
+       return v1[i-1];
+    }
+};
