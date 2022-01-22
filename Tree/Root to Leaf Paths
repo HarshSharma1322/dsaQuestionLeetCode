@@ -1,0 +1,34 @@
+ void leafNode(Node *root, vector<Node*>&val){
+     if(root->left)leafNode(root->left,val);
+    if(root->right==NULL && root->left==NULL){
+         val.push_back(root);
+     }
+     if(root->right)leafNode(root->right,val);
+ }
+ bool getPath(Node* root,Node* val,vector<int>&ans){
+     if(!root) return false;
+     ans.push_back(root->data);
+     if(root==val) return true;
+     
+     if(getPath(root->left,val,ans)|| getPath(root->right,val,ans)){
+         return true;
+     }
+     ans.pop_back();
+     return false;
+ }
+vector<vector<int>> Paths(Node* root)
+{
+    vector<vector<int>>ans;
+    if(!root) return ans;
+    vector<Node* >val;
+    leafNode(root,val);
+    Node* value;
+    for(int i=0; i<val.size();i++){
+        vector<int>temp;
+        value=val[i];
+        getPath(root,value,temp);
+            ans.push_back(temp);
+        
+        
+    }
+}
