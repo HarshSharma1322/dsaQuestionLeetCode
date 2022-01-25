@@ -1,0 +1,33 @@
+class Solution{
+  public:
+    /* The function should clone the passed tree and return 
+       root of the cloned tree */
+    Node* cloneTree(Node* tree)
+    {
+        if(!tree) return NULL;
+       Node *root= new Node(tree->data);
+       if(tree->left)root->left= tree->left;
+       if(tree->right)root->right= tree->right;
+       if(tree->random)root->random= tree->random;
+       queue<pair<Node*,Node*>>q;
+       q.push({tree,root});
+       
+       while(!q.empty()){
+           auto org=q.front().first;
+           auto dup=q.front().second;
+           q.pop();
+           if(org->left){
+               dup->left=org->left;
+               q.push({org->left,dup->left});
+           }
+            if(org->right){
+               dup->right=org->right;
+               q.push({org->right,dup->right});
+           }
+            if(org->random){
+               dup->random=org->random;
+           }
+       }
+       return root;
+    }
+};
