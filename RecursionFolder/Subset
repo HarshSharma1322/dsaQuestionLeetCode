@@ -1,0 +1,22 @@
+class Solution
+{
+    public:
+    void Helper(vector<int>&A,vector<int>&v,vector<vector<int>>&ans,int index){
+        if(index==A.size()){
+            ans.push_back(v);
+            return;
+        }
+        v.push_back(A[index]);
+        Helper(A,v,ans,index+1);
+        v.pop_back();
+        Helper(A,v,ans,index+1);
+    }
+    vector<vector<int> > subsets(vector<int>& A)
+    {
+        vector<int>v;
+        vector<vector<int>>ans;
+        Helper(A,v,ans,0);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
