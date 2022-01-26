@@ -1,0 +1,19 @@
+void Helper(Node *root,map<int,int>&mp,int level){
+    if(root->left==NULL && root->right==NULL){
+        mp[level]++;
+        return;
+    }
+    level++;
+    if(root->left)Helper(root->left,mp,level);
+    if(root->right)Helper(root->right,mp,level);
+}
+void pathCounts(Node *root)
+{
+    if(!root) return;
+    map<int,int>mp;
+    int level=1;
+    Helper(root,mp,level);
+    for(auto it:mp){
+        cout<<it.first<<" "<<it.second<<" $";
+    }
+}
