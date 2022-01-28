@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void permutate(vector<int>nums, vector<vector<int>>&ans, int index){
+        if(index==nums.size()){
+            ans.push_back(nums);
+            return;
+        }
+        unordered_set<int> seen;  
+        for(int i=index; i<nums.size();i++){
+            if(seen.find(nums[i]) == seen.end()){
+                swap(nums[i],nums[index]);
+                permutate(nums,ans,index+1);
+                swap(nums[i],nums[index]);
+                seen.insert(nums[i]);
+            }
+
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>>ans;
+        permutate(nums,ans,0);
+        return ans;
+    }
+};
