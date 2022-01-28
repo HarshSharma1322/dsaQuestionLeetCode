@@ -1,0 +1,40 @@
+class Solution{
+    public:
+    void Subset(vector<vector<int>>&m,vector<string>&ans,vector<vector<int>>&visited,string &curr,int i,int j,int n){
+        if(i>=n || j>=n ||i<0||j<0 || m[i][j]==0){
+            return;
+        }
+        if(i==n-1 && j== n-1){
+            ans.push_back(curr);
+            return;
+        }
+        m[i][j]=0;
+        
+        curr+="D";
+        Subset(m,ans,visited,curr,i+1,j,n);
+        curr.pop_back();
+        
+        curr+="L";
+        Subset(m,ans,visited,curr,i,j-1,n);
+        curr.pop_back();
+        
+        curr+="R";
+        Subset(m,ans,visited,curr,i,j+1,n);
+        curr.pop_back();
+        
+        curr+="U";
+        Subset(m,ans,visited,curr,i-1,j,n);
+        curr.pop_back();
+        
+        m[i][j]=1;
+    }
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        string curr="";
+        vector<string>ans;
+        vector<vector<int>>visited(n,vector<int>(n,0));//no need bcz already hashmap is given
+        Subset(m,ans,visited,curr,0,0,n);
+        return ans;
+    }
+};
+
+ 
