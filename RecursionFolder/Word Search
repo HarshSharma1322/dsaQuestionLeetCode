@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int di[4]={1,0,-1,0};
+    int dj[4]={0,1,0,-1};
+    bool solve(vector<vector<char>>& board,string &word,int &row,int &col,int i,int j,int index){
+        if(index==word.size()){
+            return true;
+        }
+        if(i<0||i>=row|| j<0|| j>=col || board[i][j]!=word[index] || board[i][j]=='#') {
+            return false;
+        }
+        char ch=board[i][j];
+        board[i][j]='#';
+        for(int x=0; x<4;x++){
+            if(solve(board,word,row,col,i+di[x],j+dj[x],index+1)) return true;
+        }
+        board[i][j]=ch;
+        return false;
+    }
+    bool exist(vector<vector<char>>& board, string word) {
+        int row=board.size();
+        int col=board[0].size();
+        for(int i=0; i<row; i++){
+            for(int j=0; j<col; j++){
+                if(word[0]==board[i][j] && solve(board,word,row,col,i,j,0))return true;
+            }
+        }
+        return false;
+    }
+};
