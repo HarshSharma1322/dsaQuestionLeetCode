@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void Subset(string digits, vector<string>s,vector<string>&ans,int index,string val){
+        if(index==digits.size()){
+            ans.push_back(val);
+            return;
+        }
+        string curr=(s[(digits.at(index))-'0']);
+        for(int i=1; i<curr.size(); i++){
+            val+=curr[i];
+            Subset(digits,s,ans,index+1,val);
+            val.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        if(digits.size()==0) return {};
+        vector<string>ans;
+        string val="";
+        int index=0;
+         vector<string>s={" "," ","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+         Subset(digits,s,ans,index,val);
+        return ans;
+    }
+};
