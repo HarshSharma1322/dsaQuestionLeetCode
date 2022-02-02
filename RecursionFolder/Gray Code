@@ -1,0 +1,23 @@
+class Solution
+{
+    public:
+    vector<string> graycode(int n)
+    {
+        if(n==1){
+            vector<string>bs;
+            bs.push_back("0");
+            bs.push_back("1");
+            return bs;
+        }
+        vector<string>ans;
+        vector<string> temp=graycode(n-1);
+        for(int i=0; i<temp.size(); i++){
+            ans.push_back("0"+temp[i]);
+        }
+        
+        for(int i=temp.size()-1; i>=0; i--){
+            ans.push_back("1"+temp[i]);
+        }
+        return ans;
+    }
+};
