@@ -1,0 +1,21 @@
+class Solution
+{
+    public:
+    int solve(Node *root, int &k){
+        if(root==NULL) return -1;
+        int left=solve(root->right,k);
+        if(left!=-1){
+            return left;
+        }
+        k=k-1;
+        if(k==0){
+            return root->data;
+        }
+        int right=solve(root->left,k);
+        return right;
+    }
+    int kthLargest(Node *root, int k)
+    {
+        return solve(root,k);
+    }
+};
