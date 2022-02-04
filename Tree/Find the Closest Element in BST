@@ -1,0 +1,44 @@
+	int val1=-1;
+	int val2=-1;
+	void findFloor(Node *root,int k){
+        while(root){
+            if(root->data==k){
+    	        val1= root->data;
+    	        return;
+    	    }
+    	    if(root->data>k){
+    	        val1=root->data;
+    	        root=root->left;
+    	    }
+    	    else{
+    	        root=root->right;
+    	    }
+        }
+        return;
+	}
+	void findCeil(Node *root,int k){
+        while(root){
+            if(root->data==k){
+    	        val2= root->data;
+    	        return;
+    	    }
+    	    if(root->data>k){
+    	        
+    	        root=root->left;
+    	    }
+    	    else{
+    	        val2=root->data;
+    	        root=root->right;
+    	    }
+        }
+        return;
+	}
+    int minDiff(Node *root, int k)
+    {
+        findFloor(root,k);
+        findCeil(root,k);
+        int res1=abs(val1-k);
+        int res2=abs(val2-k);
+        return min(res1,res2);
+    }
+};
