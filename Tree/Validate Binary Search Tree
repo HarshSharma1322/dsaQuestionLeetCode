@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool solve(TreeNode *root,double lowerLimit ,double upperLimit){
+        if(!root) return true;
+        if(root->val<=lowerLimit || root->val>=upperLimit) return false;
+        return(solve(root->left,lowerLimit,root->val) && solve(root->right,root->val,upperLimit));
+    }
+    bool isValidBST(TreeNode* root) {
+        double infinity = numeric_limits<double>::infinity();
+        double minusInfinity = -numeric_limits<double>::infinity();
+        return (solve(root, minusInfinity,infinity));
+  
+    }
+};
