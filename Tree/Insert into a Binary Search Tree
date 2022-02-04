@@ -1,0 +1,25 @@
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int k) {
+        if(!root) return new TreeNode(k);
+        TreeNode *curr=root;
+        while(true){
+            if(curr->val>k){
+                if(curr->left!=NULL) curr=curr->left;
+                else {
+                    curr->left= new TreeNode(k);
+                    break;
+                }
+                
+            }
+            if(curr->val<k){
+                if(curr->right!=NULL) curr=curr->right;
+                else{
+                    curr->right= new TreeNode(k);
+                    break;
+                } 
+            }
+        }
+        return root;
+    }
+};
