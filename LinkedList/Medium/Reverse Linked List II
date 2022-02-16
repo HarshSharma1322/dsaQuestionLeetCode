@@ -1,0 +1,24 @@
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int start, int end) {
+        if(!head || start==end) return head;
+        int pos=1;
+        ListNode *curr=head,*prev=head;
+        ListNode *dummy=new ListNode(0);
+        prev=dummy;
+        dummy->next=head;
+        while(pos++<start){
+            prev=prev->next;
+        }
+        curr=prev->next;
+        cout<<prev->val<<" "<<curr->val;
+        while(start<end){
+            ListNode *temp=curr->next;
+            curr->next=temp->next;
+            temp->next=prev->next;
+            prev->next=temp;
+            start++;
+        }
+        return dummy->next;
+    }
+};
